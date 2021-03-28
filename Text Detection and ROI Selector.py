@@ -33,6 +33,11 @@ while True:
     for x,y,color in circles:
         cv2.circle(img,(x,y),3,color,cv2.FILLED)
     cv2.imshow("Original Image ", img)
+    for x,r in enumerate(roi):
+        # For displaying the rois
+        cv2.rectangle(imgMask, (r[0][0], r[0][1]), (r[1][0], r[1][1]), (0, 
+        255,0), cv2.FILLED)
+        imgShow = cv2.addWeighted(imgShow, 0.99, imgMask, 0.1, 0)
     cv2.setMouseCallback("Original Image ", mousePoints)
     if cv2.waitKey(1) & 0xFF == ord('s'):
         print(myPoints)
